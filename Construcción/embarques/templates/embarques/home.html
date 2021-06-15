@@ -1,0 +1,64 @@
+
+{% extends "embarques/base.html" %}
+{% block content %}
+
+    <div class="navbar fixed-top">
+        <img src="static/embarques/assets/lista.png" alt="">
+        <img src="static/embarques/assets/worldwide-shipping.png" alt="">
+        <img src="static/embarques/assets/usuario.png" alt="">
+    </div>
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th scope="col">STATUS</th>
+                <th scope="col">PROVEEDOR</th>
+                <th scope="col">CTR N°</th>
+                <th scope="col">PRODUCTO</th>
+                <th scope="col">CANTIDAD</th>
+                <th scope="col">UM</th>
+                <th scope="col">CATEGORIA</th>
+                <th scope="col">CARGA</th>
+                <th scope="col">TIPO</th>
+                <th scope="col">ETA</th>
+                <th scope="col">RETIRO</th>
+                <th scope="col">HORA</th>
+                <th scope="col">SIGLA CTR</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for contenedor in contenedores %}
+            <tr>
+                {% if contenedor.status == "EN DESCARGA" %}
+                    <td><div class="status" id="en_descarga">{{ contenedor.status }}</div></td>
+                {% elif contenedor.status == "EN DESPACHO" %}
+                    <td><div class="status" id="en_despacho">{{ contenedor.status }}</div></td>
+                {% elif contenedor.status == "EN PUERTO" %}
+                    <td><div class="status" id="en_puerto">{{ contenedor.status }}</div></td>
+                {% elif contenedor.status == "EN TRANSITO" %}
+                    <td><div class="status" id="en_transito">{{ contenedor.status }}</div></td>
+                {% endif %}
+                <td>{{ contenedor.proveedor }}</td>
+                <td>{{ contenedor.ctr }}</td>
+                <td>{{ contenedor.producto }}</td>
+                <td>{{ contenedor.cantidad }}</td>
+                <td>{{ contenedor.um }}</td>
+                <td>{{ contenedor.categoria }}</td>
+                <td>{{ contenedor.carga }}</td>
+                <td>{{ contenedor.tipo }}</td>
+                <td>{{ contenedor.eta }}</td>
+                <td>{{ contenedor.retiro }}</td>
+                <td>{{ contenedor.hora }}</td>
+                <td>{{ contenedor.siglactr }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <div class="barra-abajo">
+        <!-- <img src="static/embarques/assets/lista.png" alt="">
+        <img src="static/embarques/assets/worldwide-shipping.png" alt="">
+        <img src="static/embarques/assets/usuario.png" alt=""> -->
+    </div>
+
+{% endblock content %}
